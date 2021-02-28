@@ -95,6 +95,11 @@ namespace SeeSharp9
         public Person() { }
 
         public int GetOlder() { return Age += 1; }
+
+        public virtual void WhatAmI()
+        {
+            Console.WriteLine("Hello there!");
+        }
     }
     #endregion
     #region Elector
@@ -117,6 +122,11 @@ namespace SeeSharp9
         public static void DeepCopiyer(out Elector voter, ref Elector input)
         {
             voter = new Elector(input.Name, input.Age, input.Salary, input.Vote);
+        }
+
+        public override void WhatAmI()
+        {
+            base.WhatAmI();
         }
     }
     #endregion

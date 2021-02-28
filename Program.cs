@@ -147,6 +147,17 @@ Console.WriteLine($"db: {values.Count}");
 
 Console.WriteLine(Maturity.IsValidPercentage(10));
 
+ITechnical it1 = new Technicals();
+
+Console.WriteLine(it1.Moredetails());
+it1.GetManuals("sajt");
+
+Basetechnician bt1 = new Moretechnical(1,"Kristóf");
+Console.WriteLine($"{bt1.ToString()}");
+bt1.DoStuff();
+Console.WriteLine(bt1.Greetings("kristof bt"));
+
+
 void changename(Demo d, string s)
 {
     d.B = s;
