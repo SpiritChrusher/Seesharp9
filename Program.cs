@@ -5,30 +5,58 @@ using System.Linq;
 using System.Diagnostics;
 using System.Text.Json;
 
-var td = new DateTime().DayOfWeek;
-Debug.WriteLine("oina");
-Console.WriteLine(td.ToString());
-switch (td)
-{
-    case DayOfWeek.Sunday:
-        break;
-    case DayOfWeek.Monday:
-        Console.WriteLine("SAjt.");
-        break;
-    case DayOfWeek.Tuesday:
-        break;  
-    case DayOfWeek.Wednesday:
-        break;
-    case DayOfWeek.Thursday:
-        break;
-    case DayOfWeek.Friday:
-        break;
-    case DayOfWeek.Saturday:
-        Console.WriteLine("SAjt.");
-        break;
-    default:
-        break;
-}
+;
+{ } //teljesen lehetséges, de lehet hibaforrás, ha rossz helyre kerül
+
+Debug.WriteLine("oina"); ;
+
+var foo = 5;
+Func<int> myClosure = () => { foo = 6; return foo; };
+var bar = myClosure();
+
+Console.WriteLine(bar);
+Console.WriteLine(foo);
+
+var number = "0";
+var talan = TryCatch(number);
+Console.WriteLine(talan);
+
+/*using var db = new BloggingContext();;
+    // Note: This sample requires the database to be created before running.
+
+    // Create
+    Console.WriteLine("Inserting a new blog");
+    db.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });
+    db.SaveChanges(); //itt van hiba!!!!!!!!!
+
+    // Read
+    Console.WriteLine("Querying for a blog");
+    var blog = db.Blogs
+        .OrderBy(b => b.BlogId)
+        .First();
+
+    // Update
+    Console.WriteLine("Updating the blog and adding a post");
+    blog.Url = "https://devblogs.microsoft.com/dotnet";
+    blog.Posts.Add(
+        new Post { Title = "Hello World", Content = "I wrote an app using EF Core!" });
+    db.SaveChanges();
+
+    // Delete
+    Console.WriteLine("Delete the blog");
+    db.Remove(blog);
+    db.SaveChanges();
+*/
+
+Higher_stuff.Calculate();
+
+var h1 = new Higher_stuff();
+Higher_stuff.TestDelegate testDelA = new Higher_stuff.TestDelegate(Higher_stuff.M);
+
+Higher_stuff.TestDelegate testDelB = delegate (string s) { Console.WriteLine(s); };
+
+Higher_stuff.TestDelegate testDelC = (x) => { Console.WriteLine(x); };
+
 
 Uri url = new Uri("https://raw.githubusercontent.com/SpiritChrusher/FavoriteBeer/master/src/main/Allbeers.json", UriKind.Absolute);
 
@@ -126,25 +154,6 @@ foreach (var wordGroup in wordGroups)
 }
 
 
-
-List<int> values = new List<int> { 0, -1, -256, 10, 49, 50, 51, 54, 55, 56, 59, 60, 61, 100};
-foreach (var item in values)
-{
-
-    var fine = item switch
-    {
-        > 0 and <= 50 => "good",
-        > 50 and <= 55 => "warn",
-        > 55 and <= 60 => "fined",
-        > 60 => "suspended",
-        _ => "impossible"
-    };
-    Console.WriteLine($"{item} km/h => {fine}");
-}
-
-values ??= new List<int>() { 10, 41, 1, 53 };
-Console.WriteLine($"db: {values.Count}");
-
 Console.WriteLine(Maturity.IsValidPercentage(10));
 
 ITechnical it1 = new Technicals();
@@ -188,7 +197,7 @@ void changeobjref(ref Demo d)
     Console.WriteLine($"sanyi-e? {d.B == "sanyi"}"); //true
     Console.WriteLine($"sew-e? {d.B == "sew"}"); //false
     d.B = "pista";
-    Console.WriteLine($"uzoljara: {d.B}");
+    Console.WriteLine($"utoljara: {d.B}");
     Console.WriteLine("vege");
 }
 
@@ -197,4 +206,31 @@ bool iseven(int a)
     return a % 2 == 0;
 }
 
-
+float TryCatch(string a)
+{
+    try
+    {
+        return 48/ int.Parse(a);
+    }
+    catch(InvalidCastException i)
+    {
+        Console.WriteLine($"i: {i.Message}");
+        throw;
+    }
+    catch(DivideByZeroException d)
+    {
+        Console.WriteLine($"d: {d.Message}");
+        throw;
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine($"e: {e.Message}");
+        throw;
+    }
+    finally 
+    {
+        Console.WriteLine("finális!");
+        a = "11";
+        Console.WriteLine(a);
+    }
+}
