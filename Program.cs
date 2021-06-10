@@ -10,6 +10,8 @@ using System.Text.Json;
 
 Debug.WriteLine("oina"); ;
 
+
+Console.WriteLine("-----------------------");
 var foo = 5;
 Func<int> myClosure = () => { foo = 6; return foo; };
 var bar = myClosure();
@@ -17,7 +19,7 @@ var bar = myClosure();
 Console.WriteLine(bar);
 Console.WriteLine(foo);
 
-var number = "0";
+var number = "10";
 var talan = TryCatch(number);
 Console.WriteLine(talan);
 
@@ -210,16 +212,29 @@ float TryCatch(string a)
 {
     try
     {
-        return 48/ int.Parse(a);
+        
+        var res = 48 / int.Parse(a);
+        return res;
     }
-    catch(InvalidCastException i)
+    
+    catch (InvalidCastException i)
     {
         Console.WriteLine($"i: {i.Message}");
         throw;
     }
-    catch(DivideByZeroException d)
+    /*catch (DivideByZeroException d)
     {
         Console.WriteLine($"d: {d.Message}");
+        throw;
+    }*/
+    catch (Exception) when (a is "0")
+    {
+        Console.WriteLine($"s: Zero!!!");
+        throw;
+    }
+    catch (Exception) when (int.Parse(a) < 0)
+    {
+        Console.WriteLine($"s: Too small number");
         throw;
     }
     catch (Exception e)
@@ -227,7 +242,7 @@ float TryCatch(string a)
         Console.WriteLine($"e: {e.Message}");
         throw;
     }
-    finally 
+    finally
     {
         Console.WriteLine("finális!");
         a = "11";
