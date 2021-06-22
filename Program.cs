@@ -10,8 +10,17 @@ using System.Text.Json;
 
 Debug.WriteLine("oina"); ;
 
+IEnumerable<char> query = "Not what you might expect"; 
+string vowels = "aeiou";
 
-Console.WriteLine("-----------------------");
+foreach (char vowel in vowels)
+    query = query.Where(c => c != vowel);
+
+foreach (char c in query) 
+    Console.Write(c);
+
+
+Console.WriteLine("\n-----------------------");
 var foo = 5;
 Func<int> myClosure = () => { foo = 6; return foo; };
 var bar = myClosure();

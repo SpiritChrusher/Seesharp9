@@ -61,13 +61,13 @@ namespace SeeSharp9
                 {
                     if (counter == 1)
                     {
-                        string a = item2;//new String(item2);
+                        string a = item2;//new String(item2); 
                         secondlist.Add(a);
                     }
                     Console.WriteLine(item2);
                 }
             }
-
+            
             secondlist.RemoveAt(1);
             secondlist.Add("elsoszo");
 
